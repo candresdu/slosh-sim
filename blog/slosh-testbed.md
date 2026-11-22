@@ -89,7 +89,7 @@ attitude. The pendulum is integrated as a unit vector on a sphere, so nothing sp
 the straight-down position. Motors have a first-order lag. The model is integrated with a
 fixed-step RK4 at 1 kHz, and the controller runs at 100 Hz.
 
-![The control architecture of the simulation: outer position PD, gain shift and K_T, inner attitude PD, mixer, and the quadrotor with its hanging mass. The spectral damper listens to the control signal and drives K_T. Redrawn for this post.]({{ '/assets/img/slosh/architecture.svg' | relative_url }})
+![The control architecture of the simulation: outer position PD, gain shift and K_T, inner attitude PD, mixer, and the quadrotor with its hanging mass. The spectral damper listens to the control signal and drives K_T. Redrawn for this post.]({{ '/assets/img/slosh/architecture.svg' | relative_url }}){: .img-fluid }
 
 ## 3. The controller
 
@@ -104,7 +104,7 @@ output. Crucially, nothing in the controller measures the pendulum.
 The Nichols chart below is the outer loop of this simulation's designed gains. The paper reports
 the margins of its real controller (its Table 1); the table compares them with the ones I designed.
 
-![Nichols chart of the outer loop with the designed phase and gain margins annotated, and the paper's Table 1 targets drawn as open diamonds.]({{ '/assets/img/slosh/nichols_outer.png' | relative_url }})
+![Nichols chart of the outer loop with the designed phase and gain margins annotated, and the paper's Table 1 targets drawn as open diamonds.]({{ '/assets/img/slosh/nichols_outer.png' | relative_url }}){: .img-fluid }
 
 | Quantity | R-1 Table 1 | This simulation (pitch and roll) |
 |---|---|---|
@@ -175,7 +175,7 @@ reproduce, qualitatively:
    on both axes (more on pitch than on roll), and then slowly recover toward 1 as the slosh
    calms down.
 
-![The story run: the pendulum angle and K_T through Nominal, Gain shift and AAC engaged, with the detector trip marked. Generated from this project's model.]({{ '/assets/img/slosh/story_sequence.png' | relative_url }})
+![The story run: the pendulum angle and K_T through Nominal, Gain shift and AAC engaged, with the detector trip marked. Generated from this project's model.]({{ '/assets/img/slosh/story_sequence.png' | relative_url }}){: .img-fluid }
 
 The regime buttons act on the **running** flight, exactly like the replay. Tapping one starts the
 flight if it is paused, ramps the gains over about 1.5 s, and the motion and the charts carry on;
@@ -222,7 +222,7 @@ reports the slosh suppressed within about 10 s.
 The figure below is the same *sequence* in my simulation. It is generated from this project's
 model, not copied from the paper.
 
-![A flight-test-style run: gain shift ramped from 1 to 2 over 20 s with the AAC in Monitor, rotary slosh growing to about 0.37 rad, and the AAC engaged at t = 100 s.]({{ '/assets/img/slosh/vb_sequence.png' | relative_url }})
+![A flight-test-style run: gain shift ramped from 1 to 2 over 20 s with the AAC in Monitor, rotary slosh growing to about 0.37 rad, and the AAC engaged at t = 100 s.]({{ '/assets/img/slosh/vb_sequence.png' | relative_url }}){: .img-fluid }
 
 The simulation reproduces the shape of the story and **not** the speed of the ending. The slosh
 grows to about 0.37 rad (21°) before engagement, the detector trips at about 55 s while the AAC
