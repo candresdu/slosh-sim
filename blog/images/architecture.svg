@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" width="900" height="380" role="img" aria-labelledby="t d">
+<title id="t">Control architecture of the slosh testbed simulation</title>
+<desc id="d">Reference minus measured position feeds an outer PD, multiplied by gain shift and the adaptive gain K_T, then an inner attitude PD, a motor mixer and the quad with a hanging pendulum. A spectral damper on the control signal drives the adaptive law that sets K_T. Quad position and attitude are fed back; the pendulum is not measured.</desc>
+<defs><marker id="a000000" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#000000"/></marker><marker id="aD55E00" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#D55E00"/></marker><marker id="a0072B2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0072B2"/></marker></defs>
+<rect width="900" height="380" fill="#fff"/>
+<rect x="20" y="120" width="90" height="50" stroke="#000" stroke-width="1.6" rx="6" fill="#fff"/><text x="65.0" y="142.0" font-size="14" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">Outer PD</text><text x="65.0" y="158.0" font-size="14" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">(position)</text>
+<rect x="155" y="125" width="90" height="40" stroke="#000" stroke-width="1.6" rx="6" fill="#F4E9F0"/><text x="200.0" y="150.0" font-size="14" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">Gain shift</text>
+<rect x="285" y="125" width="70" height="40" stroke="#000" stroke-width="1.6" rx="6" fill="#FBF0D5"/><text x="320.0" y="150.0" font-size="14" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">K_T</text>
+<rect x="400" y="120" width="90" height="50" stroke="#000" stroke-width="1.6" rx="6" fill="#fff"/><text x="445.0" y="142.0" font-size="14" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">Inner PD</text><text x="445.0" y="158.0" font-size="14" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">(attitude)</text>
+<rect x="535" y="120" width="80" height="50" stroke="#000" stroke-width="1.6" rx="6" fill="#fff"/><text x="575.0" y="142.0" font-size="14" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">Mixer</text><text x="575.0" y="158.0" font-size="14" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">+ motors</text>
+<rect x="660" y="100" width="215" height="90" stroke="#000" stroke-width="1.6" rx="6" fill="#E8F2FA"/><text x="767.5" y="134.0" font-size="14" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">Quad + hanging</text><text x="767.5" y="150.0" font-size="14" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">pendulum (m = 0.05 kg,</text><text x="767.5" y="166.0" font-size="14" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">L = 1 m)</text>
+<text x="65" y="106" font-size="12" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">x_ref - x</text>
+<line x1="0" y1="145" x2="20" y2="145" stroke="#000" stroke-width="1.8" marker-end="url(#a000)"/>
+<line x1="110" y1="145" x2="155" y2="145" stroke="#000" stroke-width="1.8" marker-end="url(#a000)"/>
+<line x1="245" y1="145" x2="285" y2="145" stroke="#000" stroke-width="1.8" marker-end="url(#a000)"/>
+<line x1="355" y1="145" x2="400" y2="145" stroke="#000" stroke-width="1.8" marker-end="url(#a000)"/>
+<text x="378" y="135" font-size="11" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">u</text>
+<line x1="490" y1="145" x2="535" y2="145" stroke="#000" stroke-width="1.8" marker-end="url(#a000)"/>
+<line x1="615" y1="145" x2="660" y2="145" stroke="#000" stroke-width="1.8" marker-end="url(#a000)"/>
+<text x="638" y="135" font-size="11" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">w1..4</text>
+<polyline points="767,190 767,290 65,290 65,170" fill="none" stroke="#000" stroke-width="1.8" marker-end="url(#a000000)"/>
+<text x="416" y="310" font-size="12" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">measured: quad position, velocity, attitude, rates (the pendulum is never measured)</text>
+<polyline points="445,290 445,170" fill="none" stroke="#000" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#a000000)"/>
+<rect x="190" y="20" width="150" height="44" stroke="#000" stroke-width="1.6" rx="6" fill="#FBF0D5"/><text x="265.0" y="39.0" font-size="14" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">Adaptive law</text><text x="265.0" y="55.0" font-size="14" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">dk_T/dt = ...</text>
+<rect x="400" y="20" width="140" height="44" stroke="#000" stroke-width="1.6" rx="6" fill="#FBF0D5"/><text x="470.0" y="39.0" font-size="14" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">Spectral damper</text><text x="470.0" y="55.0" font-size="14" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">y_SD (0.5 Hz band)</text>
+<polyline points="378,145 378,52 400,52" fill="none" stroke="#D55E00" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#aD55E00)"/>
+<line x1="400" y1="32" x2="340" y2="32" stroke="#D55E00" stroke-width="1.8" marker-end="url(#aD55E00)"/>
+<line x1="320" y1="64" x2="320" y2="125" stroke="#0072B2" stroke-width="1.8" marker-end="url(#a0072B2)"/>
+<text x="640" y="40" font-size="12" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">Pitch channel shown;</text>
+<text x="640" y="56" font-size="12" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">roll has the same structure</text>
+<text x="450.0" y="372" font-size="10" fill="#666" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">Reconstruction model (generated), not R-1 data</text>
+</svg>

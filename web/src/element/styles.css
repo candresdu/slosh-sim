@@ -1,0 +1,116 @@
+/* <slosh-sim> shell styles. Everything lives in the shadow root (no leakage either way).
+   Colours: --slosh-* first, then al-folio's --global-* custom properties, then the built-in palette
+   (the fallbacks are set from script as --sc-* on .frame, see slosh-sim.ts). */
+:host {
+  display: block;
+  position: relative;
+  scroll-margin-top: 70px; /* below al-folio's fixed navbar */
+  margin: 1rem 0;
+  color: var(--sc-fg);
+  background: var(--sc-bg);
+  border-radius: 8px;
+  contain: layout style;
+}
+:host([hidden]) { display: none; }
+:host(:fullscreen), :host([fullscreen-overlay]) { margin: 0; border-radius: 0; overflow: auto; height: 100%; }
+:host([fullscreen-overlay]) { height: 100dvh; }
+
+.frame {
+  container-type: inline-size;
+  container-name: slosh;
+  position: relative;
+  font: 14px/1.4 system-ui, sans-serif;
+  color: var(--sc-fg);
+  background: var(--sc-bg);
+  border-radius: inherit;
+  min-height: 100%;
+}
+.frame * { box-sizing: border-box; }
+
+/* Compact (default): everything stacks */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: 'scene' 'ctl' 'charts';
+  gap: 12px;
+  padding: 0;
+}
+:host(:fullscreen) .grid, :host([fullscreen-overlay]) .grid { padding: 52px 8px 8px; }
+.view { grid-area: scene; position: relative; min-width: 0; }
+.scene:focus-visible { outline: 3px solid var(--sc-focus); outline-offset: -3px; }
+
+/* Video-player layout: the regime bar overlays the top of the scene, the dock (player bar, then the info banner)
+   overlays the bottom. Below 640 px (compact) the bar sits above the scene and the dock below it, all inside .view. */
+.view > .sc-regime { position: absolute; top: 0; left: 0; right: 0; z-index: 3; pointer-events: none; }
+.view > .sc-regime button { pointer-events: auto; background: color-mix(in srgb, var(--sc-surface) 85%, transparent); }
+.view > .sc-regime button[aria-pressed="true"] { background: var(--sc-accent); }
+.sc-dock { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; display: flex; flex-direction: column; border-radius: 0 0 6px 6px; overflow: hidden; }
+.frame[data-layout='compact'] .view { display: flex; flex-direction: column; }
+.frame[data-layout='compact'] .view > .sc-regime { position: static; pointer-events: auto; order: -1; gap: 4px; padding: 4px 0;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.frame[data-layout='compact'] .view > .sc-regime button { background: var(--sc-surface); padding: 4px 6px; font-size: 13px; }
+.frame[data-layout='compact'] .view > .sc-regime button[aria-pressed="true"] { background: var(--sc-accent); }
+.frame[data-layout='compact'] .sc-regime .sc-fig { display: block; }
+.frame[data-layout='compact'] .sc-regime .sc-dot { display: none; }
+.frame[data-layout='compact'] .sc-dock { position: static; }
+
+.scene { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 6px; background: var(--sc-surface); }
+.scene canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: pan-y; }
+.scene canvas[hidden] { display: none; }
+.fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 8px; color: var(--sc-muted); }
+.fallback[hidden] { display: none; }
+::slotted([slot='fallback']) { max-width: 100%; max-height: 100%; object-fit: contain; }
+.ctl { grid-area: ctl; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.charts { grid-area: charts; min-width: 0; }
+
+/* Folded charts: <details> are only collapsible in the compact layout */
+.sc-fold { margin: 0; min-width: 0; border: 1px solid var(--sc-border); border-radius: 6px; padding: 2px 8px; }
+.sc-fold > summary { cursor: pointer; font-weight: 600; padding: 6px 0; }
+.sc-fold > summary:focus-visible { outline: 3px solid var(--sc-focus); outline-offset: 2px; }
+.frame:not([data-layout='compact']) .sc-fold { border: 0; padding: 0; }
+.frame:not([data-layout='compact']) .sc-fold > summary { display: none; }
+
+/* Column layout: al-folio post column (about 730 px) */
+@container slosh (min-width: 640px) {
+  .frame[data-mode='auto'] .charts .slosh-charts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.frame[data-mode='full'] .charts .slosh-charts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* Wide layout: 3D view left, charts right (typically full screen) */
+@container slosh (min-width: 1100px) {
+  .frame:not([data-mode='compact']) .grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: 'scene charts' 'ctl charts';
+    grid-template-rows: auto 1fr;
+    align-items: start;
+  }
+}
+
+/* Exit control (full screen) */
+.exit {
+  position: absolute; top: 8px; right: 8px; z-index: 10; min-height: 36px; padding: 4px 12px;
+  font: inherit; border-radius: 6px; cursor: pointer;
+  color: var(--sc-fg); background: var(--sc-surface); border: 2px solid var(--sc-accent);
+}
+.exit[hidden] { display: none; }
+.exit:focus-visible { outline: 3px solid var(--sc-focus); outline-offset: 2px; }
+
+.sc-exp > summary:focus-visible { outline: 3px solid var(--sc-focus); outline-offset: 2px; }
+.sc-summary { font: 14px/1.4 system-ui, sans-serif; color: var(--sc-fg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .frame * { scroll-behavior: auto; transition: none; animation: none; }
+}
+
+/* In the article (not full screen) the widget is one framed object: scene, controls and a short strip of the
+   three key charts (θ, K_T, y_SD). Full screen shows all six charts at full height. */
+.frame[data-fs='false'] { border: 1px solid var(--sc-border); padding-bottom: 8px; }
+.frame[data-fs='false'] .ctl, .frame[data-fs='false'] .charts, .frame[data-fs='false'] .sc-more { padding-inline: 8px; }
+.frame[data-fs='false'] .sc-fold { display: none; }
+.sc-more { grid-column: 1 / -1; margin: 0; font-size: 12px; color: var(--sc-muted); }
+.frame[data-fs='true'] .sc-more { display: none; }
+.frame[data-fs='false'] .charts .slosh-charts { gap: 6px 10px; }
+@container slosh (min-width: 640px) {
+  .frame[data-fs='false'][data-mode='auto'] .charts .slosh-charts,
+  .frame[data-fs='false'][data-mode='full'] .charts .slosh-charts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}

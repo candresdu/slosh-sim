@@ -1,0 +1,444 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "slosh-params/1",
+  "title": "Slosh simulation parameters",
+  "$defs": {
+    "num": {
+      "type": "object",
+      "required": [
+        "v",
+        "src"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "v": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "src": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "int": {
+      "type": "object",
+      "required": [
+        "v",
+        "src"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "v": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "src": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "bool": {
+      "type": "object",
+      "required": [
+        "v",
+        "src"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "v": {
+          "type": "boolean"
+        },
+        "src": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "vec3": {
+      "type": "object",
+      "required": [
+        "v",
+        "src"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "v": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "src": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "sos": {
+      "type": "object",
+      "required": [
+        "v",
+        "src"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "v": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 5,
+            "maxItems": 5
+          }
+        },
+        "src": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  },
+  "type": "object",
+  "required": [
+    "schema",
+    "modelVersion",
+    "vehicle",
+    "pendulum",
+    "motor",
+    "control",
+    "aac",
+    "sensing",
+    "sim"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "slosh-params/1"
+    },
+    "modelVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "vehicle": {
+      "type": "object",
+      "required": [
+        "m_q",
+        "J",
+        "arm",
+        "k_f",
+        "k_tau",
+        "pivotOffset"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "m_q": {
+          "$ref": "#/$defs/num"
+        },
+        "J": {
+          "$ref": "#/$defs/vec3"
+        },
+        "arm": {
+          "$ref": "#/$defs/num"
+        },
+        "k_f": {
+          "$ref": "#/$defs/num"
+        },
+        "k_tau": {
+          "$ref": "#/$defs/num"
+        },
+        "pivotOffset": {
+          "$ref": "#/$defs/vec3"
+        }
+      }
+    },
+    "pendulum": {
+      "type": "object",
+      "required": [
+        "m_p",
+        "L",
+        "k_damp"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "m_p": {
+          "$ref": "#/$defs/num"
+        },
+        "L": {
+          "$ref": "#/$defs/num"
+        },
+        "k_damp": {
+          "$ref": "#/$defs/num"
+        }
+      }
+    },
+    "motor": {
+      "type": "object",
+      "required": [
+        "tau",
+        "omegaMin",
+        "omegaMax"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "tau": {
+          "$ref": "#/$defs/num"
+        },
+        "omegaMin": {
+          "$ref": "#/$defs/num"
+        },
+        "omegaMax": {
+          "$ref": "#/$defs/num"
+        }
+      }
+    },
+    "control": {
+      "type": "object",
+      "required": [
+        "rateHz",
+        "attMax",
+        "inner",
+        "outer",
+        "alt",
+        "yaw"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "rateHz": {
+          "$ref": "#/$defs/num"
+        },
+        "attMax": {
+          "$ref": "#/$defs/num"
+        },
+        "inner": {
+          "type": "object",
+          "required": [
+            "Kp",
+            "Kd"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "Kp": {
+              "$ref": "#/$defs/num"
+            },
+            "Kd": {
+              "$ref": "#/$defs/num"
+            }
+          }
+        },
+        "outer": {
+          "type": "object",
+          "required": [
+            "Kp",
+            "Kd"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "Kp": {
+              "$ref": "#/$defs/num"
+            },
+            "Kd": {
+              "$ref": "#/$defs/num"
+            }
+          }
+        },
+        "alt": {
+          "type": "object",
+          "required": [
+            "Kp",
+            "Kd"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "Kp": {
+              "$ref": "#/$defs/num"
+            },
+            "Kd": {
+              "$ref": "#/$defs/num"
+            }
+          }
+        },
+        "yaw": {
+          "type": "object",
+          "required": [
+            "Kp",
+            "Kd"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "Kp": {
+              "$ref": "#/$defs/num"
+            },
+            "Kd": {
+              "$ref": "#/$defs/num"
+            }
+          }
+        }
+      }
+    },
+    "aac": {
+      "type": "object",
+      "required": [
+        "a0",
+        "b_e",
+        "b_s",
+        "kMin",
+        "kMax",
+        "hp",
+        "lp",
+        "threshold",
+        "clearRatio",
+        "clearHoldS",
+        "engageRampS",
+        "refLeadS",
+        "refLagS"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "a0": {
+          "$ref": "#/$defs/num"
+        },
+        "b_e": {
+          "$ref": "#/$defs/num"
+        },
+        "b_s": {
+          "$ref": "#/$defs/num"
+        },
+        "kMin": {
+          "$ref": "#/$defs/num"
+        },
+        "kMax": {
+          "$ref": "#/$defs/num"
+        },
+        "hp": {
+          "type": "object",
+          "required": [
+            "fc",
+            "order",
+            "sos"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "fc": {
+              "$ref": "#/$defs/num"
+            },
+            "order": {
+              "$ref": "#/$defs/int"
+            },
+            "sos": {
+              "$ref": "#/$defs/sos"
+            }
+          }
+        },
+        "lp": {
+          "type": "object",
+          "required": [
+            "fc",
+            "order",
+            "sos"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "fc": {
+              "$ref": "#/$defs/num"
+            },
+            "order": {
+              "$ref": "#/$defs/int"
+            },
+            "sos": {
+              "$ref": "#/$defs/sos"
+            }
+          }
+        },
+        "threshold": {
+          "$ref": "#/$defs/num"
+        },
+        "clearRatio": {
+          "$ref": "#/$defs/num"
+        },
+        "clearHoldS": {
+          "$ref": "#/$defs/num"
+        },
+        "engageRampS": {
+          "$ref": "#/$defs/num"
+        },
+        "refLeadS": {
+          "$ref": "#/$defs/num"
+        },
+        "refLagS": {
+          "$ref": "#/$defs/num"
+        }
+      }
+    },
+    "sensing": {
+      "type": "object",
+      "required": [
+        "latencyMs",
+        "noise"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "latencyMs": {
+          "$ref": "#/$defs/num"
+        },
+        "noise": {
+          "type": "object",
+          "required": [
+            "enabled",
+            "pos",
+            "att",
+            "rate"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "$ref": "#/$defs/bool"
+            },
+            "pos": {
+              "$ref": "#/$defs/num"
+            },
+            "att": {
+              "$ref": "#/$defs/num"
+            },
+            "rate": {
+              "$ref": "#/$defs/num"
+            }
+          }
+        }
+      }
+    },
+    "sim": {
+      "type": "object",
+      "required": [
+        "dt",
+        "controlDecimation",
+        "seed",
+        "g"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "dt": {
+          "$ref": "#/$defs/num"
+        },
+        "controlDecimation": {
+          "$ref": "#/$defs/int"
+        },
+        "seed": {
+          "$ref": "#/$defs/int"
+        },
+        "g": {
+          "$ref": "#/$defs/num"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "slosh-golden/1",
+  "title": "Golden trace (100 Hz)",
+  "type": "object",
+  "required": [
+    "schema",
+    "modelVersion",
+    "paramsSha256",
+    "preset",
+    "generator",
+    "dt",
+    "n",
+    "columns"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "slosh-golden/1"
+    },
+    "modelVersion": {
+      "type": "string"
+    },
+    "paramsSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "preset": {
+      "enum": [
+        "story",
+        "fig12",
+        "fig13",
+        "fig14",
+        "vb"
+      ]
+    },
+    "generator": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dt": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "n": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "columns": {
+      "type": "object",
+      "required": [
+        "t",
+        "theta",
+        "phi",
+        "roll",
+        "pitch",
+        "yaw",
+        "x",
+        "y",
+        "z",
+        "mx",
+        "my",
+        "kT_pitch",
+        "kT_roll",
+        "ySD_pitch",
+        "ySD_roll",
+        "detect_pitch",
+        "detect_roll",
+        "m1",
+        "m2",
+        "m3",
+        "m4"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "t": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "theta": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "phi": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "roll": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "pitch": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "yaw": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "x": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "y": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "z": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "mx": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "my": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "kT_pitch": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "kT_roll": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "ySD_pitch": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "ySD_roll": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "detect_pitch": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "detect_roll": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "m1": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "m2": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "m3": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "m4": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <!-- Mock al-folio page: fixed navbar (z-index 1030, 56 px), 730 px post column, theme custom properties
+       and a toggle that flips html[data-theme]. Query: ?theme=dark, ?width=360 is done by the viewport. -->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mock al-folio post</title>
+    <style>
+      html[data-theme='light'] { --global-bg-color: #ffffff; --global-text-color: #000000; --global-theme-color: #b509ac; }
+      html[data-theme='dark'] { --global-bg-color: #1c1c1d; --global-text-color: #e8e8e8; --global-theme-color: #2698ba; }
+      body { margin: 0; padding-top: 56px; font: 16px/1.6 system-ui, sans-serif; background: var(--global-bg-color); color: var(--global-text-color); }
+      nav.navbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; z-index: 1030; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; background: var(--global-bg-color); border-bottom: 1px solid #8884; }
+      nav.navbar a { color: var(--global-text-color); text-decoration: none; font-weight: 600; }
+      nav.navbar button { font: inherit; padding: 4px 10px; }
+      main.container { max-width: 730px; margin: 0 auto; padding: 16px; }
+      h1, h2 { line-height: 1.2; }
+      a { color: var(--global-theme-color); }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar" aria-label="Site">
+      <a href="#top">Mock al-folio</a>
+      <button id="toggle" type="button" aria-label="Toggle theme">Toggle theme</button>
+    </nav>
+    <main class="container" id="top">
+      <h1>Fuel slosh on a quadrotor testbed</h1>
+      <p>Intro paragraph of the blog post. <a href="#sim">Jump to the simulation</a>.</p>
+      <h2>Simulation</h2>
+      <slosh-sim id="sim" preset="fig13">
+        <img slot="fallback" alt="Static view of the quadrotor with a hanging mass" width="640" height="360" />
+      </slosh-sim>
+      <p>More text after the simulation. The component reads only the page's theme state and custom properties.</p>
+    </main>
+    <script type="module" src="../../slosh-sim.js"></script>
+    <script>
+      const root = document.documentElement;
+      const q = new URLSearchParams(location.search);
+      if (q.get('theme') === 'dark') root.setAttribute('data-theme', 'dark');
+      document.getElementById('toggle').addEventListener('click', () => {
+        root.setAttribute('data-theme', root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+      });
+    </script>
+  </body>
+</html>

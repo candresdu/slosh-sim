@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>slosh-sim: standalone demo</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; background: #fff; color: #1a1d21; }
+      html[data-theme='dark'] body { background: #14181d; color: #e6e9ec; }
+      main { max-width: 730px; margin: 0 auto; padding: 16px; }
+      button.toggle { font: inherit; padding: 4px 10px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 style="font-size: 20px">Fuel slosh testbed: standalone demo</h1>
+      <p>
+        <button class="toggle" type="button" id="theme">Dark theme</button>
+      </p>
+      <!-- Build first (npm run build), then: npx vite preview -->
+      <slosh-sim preset="fig12">
+        <img slot="fallback" alt="Static view of the quadrotor with a hanging mass" width="640" height="360" />
+      </slosh-sim>
+    </main>
+    <script type="module" src="./slosh-sim.js"></script>
+    <script>
+      const root = document.documentElement;
+      const btn = document.getElementById('theme');
+      btn.addEventListener('click', () => {
+        const dark = root.getAttribute('data-theme') !== 'dark';
+        root.setAttribute('data-theme', dark ? 'dark' : 'light');
+        btn.textContent = dark ? 'Light theme' : 'Dark theme';
+      });
+    </script>
+  </body>
+</html>

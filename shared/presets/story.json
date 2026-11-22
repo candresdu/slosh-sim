@@ -1,0 +1,38 @@
+{
+  "schema": "slosh-preset/1",
+  "id": "story",
+  "title": "Story: nominal, gain shift, AAC engaged",
+  "caption": "One continuous flight: nominal, then a gain shift the detector catches, then the AAC suppresses it.",
+  "durationS": 52,
+  "initial": {
+    "theta": 0.2,
+    "thetaDot": 0.0,
+    "phi": 0.0,
+    "phiDot": 0.6,
+    "gainShift": 1.0,
+    "aacMode": "off"
+  },
+  "events": [
+    {
+      "t": 8,
+      "type": "rampGainShift",
+      "to": 2.3,
+      "durationS": 1.5
+    },
+    {
+      "t": 8,
+      "type": "setAacMode",
+      "mode": "monitor"
+    },
+    {
+      "t": 22,
+      "type": "setAacMode",
+      "mode": "engaged"
+    }
+  ],
+  "regimeCaptions": {
+    "nominal": "Nominal: the slosh oscillation slowly decays. Try a Kick to excite it.",
+    "gainShift": "Gain shift: the slosh oscillation is now growing; the detector is watching.",
+    "engaged": "AAC engaged: K_T is lowered and the oscillation stops growing and decays."
+  }
+}

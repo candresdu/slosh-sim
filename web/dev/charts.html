@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>slosh-sim: live charts dev page</title>
+    <style>
+      :root { color-scheme: light dark; }
+      body { margin: 0; font: 14px system-ui, sans-serif; background: #f4f6f8; color: #1a1d21; }
+      body.dark { background: #14181d; color: #e6e9ec; }
+      main { max-width: 730px; margin: 0 auto; padding: 12px; }
+      .bar { display: flex; gap: 8px; align-items: center; margin: 8px 0; flex-wrap: wrap; }
+      button { font: inherit; padding: 4px 10px; }
+      button:focus-visible { outline: 3px solid #0b5cad; outline-offset: 2px; }
+      body.dark button:focus-visible { outline-color: #74c0fc; }
+      #banner { padding: 6px 10px; border-radius: 4px; margin: 8px 0; min-height: 1.4em; }
+      #banner.tripped { background: #fdece7; color: #b3290a; }
+      body.dark #banner.tripped { background: #3a1f17; color: #ff8f6b; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 style="font-size: 18px">Charts dev page</h1>
+      <div class="bar" role="group" aria-label="Preset and theme controls">
+        <button id="fig12" type="button">Fig 12</button>
+        <button id="fig13" type="button">Fig 13</button>
+        <button id="fig14" type="button">Fig 14</button>
+        <button id="vb" type="button">Sec. V.B</button>
+        <button id="theme" type="button" aria-label="Toggle light or dark theme">Dark theme</button>
+        <span id="info"></span>
+      </div>
+      <div id="banner" role="status"></div>
+      <div id="charts"></div>
+    </main>
+    <script type="module" src="./charts.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "schema": "slosh-preset/1",
+  "id": "fig12",
+  "title": "Fig 12: stable",
+  "caption": "Gain shift 1, AAC off. The slosh oscillation decays on its own.",
+  "durationS": 60,
+  "initial": {
+    "theta": 0.2,
+    "thetaDot": 0.0,
+    "phi": 0.0,
+    "phiDot": 0.6,
+    "gainShift": 1.0,
+    "aacMode": "off"
+  },
+  "events": []
+}

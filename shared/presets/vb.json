@@ -1,0 +1,28 @@
+{
+  "schema": "slosh-preset/1",
+  "id": "vb",
+  "title": "Section V.B flight-test sequence",
+  "caption": "Gain shift ramps to 2 over 20 s with AAC in Monitor; AAC is engaged at t = 100 s.",
+  "durationS": 130,
+  "initial": {
+    "theta": 0.05,
+    "thetaDot": 0.0,
+    "phi": 0.0,
+    "phiDot": 0.2,
+    "gainShift": 1.0,
+    "aacMode": "monitor"
+  },
+  "events": [
+    {
+      "t": 0,
+      "type": "rampGainShift",
+      "to": 2.0,
+      "durationS": 20
+    },
+    {
+      "t": 100,
+      "type": "setAacMode",
+      "mode": "engaged"
+    }
+  ]
+}

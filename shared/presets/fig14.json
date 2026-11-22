@@ -1,0 +1,16 @@
+{
+  "schema": "slosh-preset/1",
+  "id": "fig14",
+  "title": "Fig 14: AAC engaged",
+  "caption": "Gain shift 2.3, AAC engaged. The detector trips and K_T is lowered to suppress the slosh.",
+  "durationS": 60,
+  "initial": {
+    "theta": 0.2,
+    "thetaDot": 0.0,
+    "phi": 0.0,
+    "phiDot": 0.6,
+    "gainShift": 2.3,
+    "aacMode": "engaged"
+  },
+  "events": []
+}

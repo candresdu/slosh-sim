@@ -1,0 +1,17 @@
+{%- comment -%}
+  <slosh-sim> embed for the al-folio Jekyll site (candresdu.github.io).
+
+  Default (story mode):   {% include slosh-sim.html %}
+  Replay a figure setup:  {% include slosh-sim.html preset="fig13" autoplay=true %}
+
+  Optional params: preset ("story" | "fig12" | "fig13" | "fig14" | "vb"; omitted = story mode),
+                   autoplay (true | false), theme ("light" | "dark"; omitted = follow the site),
+                   fullscreen_button ("true" | "false"; omitted = shown).
+
+  The module URL is the same for every embed, so the browser runs the module once per page and
+  two embeds are safe. Bump ?v= whenever assets/js/slosh-sim.js is replaced (GitHub Pages caches it).
+{%- endcomment -%}
+<script type="module" src="{{ '/assets/js/slosh-sim.js' | relative_url }}?v=0.1.0"></script>
+<slosh-sim{% if include.preset %} preset="{{ include.preset }}"{% endif %}{% if include.autoplay %} autoplay{% endif %}{% if include.theme %} theme="{{ include.theme }}"{% endif %}{% if include.fullscreen_button %} fullscreen-button="{{ include.fullscreen_button }}"{% endif %}>
+  <img slot="fallback" src="{{ '/assets/img/slosh/slosh-fallback.png' | relative_url }}" alt="Quadrotor with hanging slosh mass">
+</slosh-sim>

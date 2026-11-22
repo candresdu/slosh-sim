@@ -1,0 +1,248 @@
+{
+  "schema": "slosh-params/1",
+  "modelVersion": "0.1.0",
+  "vehicle": {
+    "m_q": {
+      "v": 1.5207,
+      "src": "R-1 Table 2"
+    },
+    "J": {
+      "v": [
+        0.0211,
+        0.0216,
+        0.01455
+      ],
+      "src": "R-1 Table 2"
+    },
+    "arm": {
+      "v": 0.241,
+      "src": "R-1 Table 2"
+    },
+    "k_f": {
+      "v": 5.8597e-06,
+      "src": "R-1 Table 2"
+    },
+    "k_tau": {
+      "v": 2.925e-09,
+      "src": "R-1 Table 2"
+    },
+    "pivotOffset": {
+      "v": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "src": "assumed"
+    }
+  },
+  "pendulum": {
+    "m_p": {
+      "v": 0.05,
+      "src": "R-1 Table 2"
+    },
+    "L": {
+      "v": 1.0,
+      "src": "R-1 Table 2"
+    },
+    "k_damp": {
+      "v": 0.001,
+      "src": "assumed, k1 = k2"
+    }
+  },
+  "motor": {
+    "tau": {
+      "v": 0.04,
+      "src": "assumed"
+    },
+    "omegaMin": {
+      "v": 100.0,
+      "src": "assumed"
+    },
+    "omegaMax": {
+      "v": 1147.0,
+      "src": "assumed"
+    }
+  },
+  "control": {
+    "rateHz": {
+      "v": 100,
+      "src": "assumed"
+    },
+    "attMax": {
+      "v": 0.35,
+      "src": "assumed"
+    },
+    "inner": {
+      "Kp": {
+        "v": 13.02,
+        "src": "designed (reconstruction)"
+      },
+      "Kd": {
+        "v": 3.473,
+        "src": "designed (reconstruction)"
+      }
+    },
+    "outer": {
+      "Kp": {
+        "v": 1.092,
+        "src": "designed (reconstruction)"
+      },
+      "Kd": {
+        "v": 0.8717,
+        "src": "designed (reconstruction)"
+      }
+    },
+    "alt": {
+      "Kp": {
+        "v": 16.0,
+        "src": "designed (reconstruction)"
+      },
+      "Kd": {
+        "v": 7.2,
+        "src": "designed (reconstruction)"
+      }
+    },
+    "yaw": {
+      "Kp": {
+        "v": 25.0,
+        "src": "designed (reconstruction)"
+      },
+      "Kd": {
+        "v": 9.0,
+        "src": "designed (reconstruction)"
+      }
+    }
+  },
+  "aac": {
+    "a0": {
+      "v": 0.148765,
+      "src": "tuned (reconstruction)"
+    },
+    "b_e": {
+      "v": 0,
+      "src": "R-1 §III.B"
+    },
+    "b_s": {
+      "v": 5171.57,
+      "src": "tuned (reconstruction)"
+    },
+    "kMin": {
+      "v": 0.05,
+      "src": "tuned (reconstruction)"
+    },
+    "kMax": {
+      "v": 2.0,
+      "src": "assumed"
+    },
+    "hp": {
+      "fc": {
+        "v": 0.30509411894772775,
+        "src": "tuned (reconstruction)"
+      },
+      "order": {
+        "v": 2,
+        "src": "tuned (reconstruction)"
+      },
+      "sos": {
+        "v": [
+          [
+            0.9865364763034353,
+            -1.9730729526068707,
+            0.9865364763034353,
+            -1.9728916779214147,
+            0.9732542272923266
+          ]
+        ],
+        "src": "designed (reconstruction)"
+      }
+    },
+    "lp": {
+      "fc": {
+        "v": 0.05460514697251041,
+        "src": "tuned (reconstruction)"
+      },
+      "order": {
+        "v": 1,
+        "src": "tuned (reconstruction)"
+      },
+      "sos": {
+        "v": [
+          [
+            0.001712535160783077,
+            0.001712535160783077,
+            0.0,
+            -0.9965749296784338,
+            0.0
+          ]
+        ],
+        "src": "designed (reconstruction)"
+      }
+    },
+    "threshold": {
+      "v": 0.00166448,
+      "src": "tuned (reconstruction)"
+    },
+    "clearRatio": {
+      "v": 0.5,
+      "src": "tuned (reconstruction)"
+    },
+    "clearHoldS": {
+      "v": 2.0,
+      "src": "tuned (reconstruction)"
+    },
+    "engageRampS": {
+      "v": 0.0,
+      "src": "assumed"
+    },
+    "refLeadS": {
+      "v": 1.0,
+      "src": "assumed (reconstruction)"
+    },
+    "refLagS": {
+      "v": 0.25,
+      "src": "assumed (reconstruction)"
+    }
+  },
+  "sensing": {
+    "latencyMs": {
+      "v": 0,
+      "src": "optional realism, off"
+    },
+    "noise": {
+      "enabled": {
+        "v": false,
+        "src": "optional realism, off"
+      },
+      "pos": {
+        "v": 0.001,
+        "src": "optional realism, off"
+      },
+      "att": {
+        "v": 0.002,
+        "src": "optional realism, off"
+      },
+      "rate": {
+        "v": 0.01,
+        "src": "optional realism, off"
+      }
+    }
+  },
+  "sim": {
+    "dt": {
+      "v": 0.001,
+      "src": "assumed"
+    },
+    "controlDecimation": {
+      "v": 10,
+      "src": "assumed"
+    },
+    "seed": {
+      "v": 1,
+      "src": "assumed"
+    },
+    "g": {
+      "v": 9.80665,
+      "src": "assumed (standard gravity)"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "slosh-sim",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.core.json",
+    "lint": "eslint .",
+    "build": "vite build",
+    "build:dev": "vite build --config vite.dev.config.ts",
+    "dev": "vite --config vite.dev.config.ts",
+    "size": "size-limit",
+    "e2e": "playwright test",
+    "analyze": "ANALYZE=1 vite build"
+  },
+  "dependencies": {
+    "three": "^0.187.0",
+    "uplot": "^1.6.32"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.65.1",
+    "@size-limit/file": "^14.3.0",
+    "@types/node": "^26.6.6",
+    "@types/three": "^0.187.0",
+    "ajv": "^8.20.0",
+    "eslint": "^10.15.0",
+    "jsdom": "^31.0.1",
+    "rollup-plugin-visualizer": "^7.1.3",
+    "size-limit": "^14.3.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.73.0",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.1"
+  }
+}

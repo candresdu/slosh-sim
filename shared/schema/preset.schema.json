@@ -1,0 +1,209 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "slosh-preset/1",
+  "title": "Slosh simulation preset",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "title",
+    "caption",
+    "durationS",
+    "initial",
+    "events"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "slosh-preset/1"
+    },
+    "id": {
+      "enum": [
+        "story",
+        "fig12",
+        "fig13",
+        "fig14",
+        "vb"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "caption": {
+      "type": "string",
+      "minLength": 1
+    },
+    "durationS": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "initial": {
+      "type": "object",
+      "required": [
+        "theta",
+        "thetaDot",
+        "phi",
+        "phiDot",
+        "gainShift",
+        "aacMode"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "theta": {
+          "type": "number"
+        },
+        "thetaDot": {
+          "type": "number"
+        },
+        "phi": {
+          "type": "number"
+        },
+        "phiDot": {
+          "type": "number"
+        },
+        "gainShift": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 3.0
+        },
+        "aacMode": {
+          "enum": [
+            "off",
+            "monitor",
+            "engaged"
+          ]
+        }
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "t",
+              "type",
+              "to",
+              "durationS"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "t": {
+                "type": "number",
+                "minimum": 0
+              },
+              "type": {
+                "const": "rampGainShift"
+              },
+              "to": {
+                "type": "number",
+                "minimum": 0.5,
+                "maximum": 3.0
+              },
+              "durationS": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "t",
+              "type",
+              "value"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "t": {
+                "type": "number",
+                "minimum": 0
+              },
+              "type": {
+                "const": "setGainShift"
+              },
+              "value": {
+                "type": "number",
+                "minimum": 0.5,
+                "maximum": 3.0
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "t",
+              "type",
+              "mode"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "t": {
+                "type": "number",
+                "minimum": 0
+              },
+              "type": {
+                "const": "setAacMode"
+              },
+              "mode": {
+                "enum": [
+                  "off",
+                  "monitor",
+                  "engaged"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "t",
+              "type"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "t": {
+                "type": "number",
+                "minimum": 0
+              },
+              "type": {
+                "const": "kick"
+              },
+              "theta": {
+                "type": "number"
+              },
+              "phiDot": {
+                "type": "number"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "regimeCaptions": {
+      "type": "object",
+      "required": [
+        "nominal",
+        "gainShift",
+        "engaged"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "nominal": {
+          "type": "string",
+          "minLength": 1
+        },
+        "gainShift": {
+          "type": "string",
+          "minLength": 1
+        },
+        "engaged": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

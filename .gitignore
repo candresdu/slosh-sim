@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.pdf
+*.tsbuildinfo
+coverage/
+dist-dev/
+.shots-tools/
+test-results/
+playwright-report/
+.venv-preview/
+blog/integration/assets/

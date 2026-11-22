@@ -1,0 +1,8 @@
+[
+  {
+    "name": "slosh-sim.js (gzip)",
+    "path": "dist/slosh-sim.js",
+    "gzip": true,
+    "limit": "400 KB"
+  }
+]
