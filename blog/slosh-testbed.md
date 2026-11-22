@@ -12,6 +12,7 @@ related_posts: false
 <style>
   img.slosh-fig { display: block; margin: 0 auto; }
   @media (min-width: 768px) { img.slosh-fig { max-width: 60%; } }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
 </style>
 
 *A note before we start.* This post gives an overview of the work I took part in during my internship
